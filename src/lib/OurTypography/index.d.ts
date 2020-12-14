@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import {OverridableComponent } from '../OverridableComponent';
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
     props: P & {
         /**
