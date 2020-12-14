@@ -3,11 +3,21 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import withStyles from '@material-ui/styles/'
 import grey from '../colors/grey'
-
-// eslint-disable-next-line no-unused-vars
-let theme
+import { ThemeProvider, useTheme } from '@material-ui/core/styles'
 
 const styles = (theme) => ({
+  title: theme.typography.title,
+  subtitle: theme.typography.subtitle,
+  common: theme.typography.common,
+  detailed: theme.typography.detailed,
+  normal: theme.typography.normal,
+  disabled: theme.typography.disabled,
+  white: theme.typography.white,
+  root: theme.typography.root
+})
+
+const defaultTheme = {
+  typography: {
   title: {
     fontWeight: 600,
     fontSize: '24px',
@@ -38,7 +48,7 @@ const styles = (theme) => ({
   root: {
     fontFamily: 'Inter'
   }
-})
+}}
 
 const Typography = React.forwardRef(function Typography(props, ref) {
   const {
@@ -52,10 +62,11 @@ const Typography = React.forwardRef(function Typography(props, ref) {
   } = props
 
   console.log('variant ', variant)
-
+  const theme = useTheme() || defaultTheme;
   const Component = component || 'span'
 
   return (
+    <ThemeProvider theme={theme}>
     <Component
       className={classNames(
         classes.root,
@@ -68,6 +79,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     >
       {children}
     </Component>
+    </ThemeProvider>
   )
 })
 
